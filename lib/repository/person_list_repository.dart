@@ -13,9 +13,7 @@ class PersonListRepository {
   PersonListRepository._();
 
   factory PersonListRepository(){
-    if(_instance == null){
-      _instance = PersonListRepository._();
-    }
+    _instance ??= PersonListRepository._();
     return _instance!;
   }
 
@@ -25,10 +23,10 @@ class PersonListRepository {
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
       List<dynamic> jsonResult = jsonResponse['results'];
-      jsonResult.forEach((element) {
+      for (var element in jsonResult) {
         result.add(PersonListItemModel(
             id: element['id'], name: element['name'], status: element['status'], species: element['species'], url: element['image']));
-      });
+      }
     }else{
       throw ErrorResponseException(errorMessage: response.statusCode.toString());
     }

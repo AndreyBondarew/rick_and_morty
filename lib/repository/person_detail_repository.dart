@@ -12,9 +12,7 @@ class PersonDetailRepository{
   PersonDetailRepository._();
 
   factory PersonDetailRepository(){
-    if (_instance == null){
-      _instance = PersonDetailRepository._();
-    }
+    _instance ??= PersonDetailRepository._();
     return _instance!;
   }
 
