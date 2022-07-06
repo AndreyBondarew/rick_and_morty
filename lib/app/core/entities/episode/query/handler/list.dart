@@ -1,8 +1,7 @@
-import 'package:rik_and_morti_rest/app/core/entities/episode/query/fetch_list.dart';
-import 'package:rik_and_morti_rest/app/core/entities/episode/query/handler/contract/list_contract.dart';
-import 'package:rik_and_morti_rest/app/core/entities/episode/repository/base_repository.dart';
-
 import '../../../../common/model/episode_list.dart';
+import '../../repository/base_repository.dart';
+import '../fetch_list.dart';
+import 'contract/list_contract.dart';
 
 class EpisodeListQueryHandler implements EpisodeListQueryHandlerContract {
   EpisodeBaseRepository repository;

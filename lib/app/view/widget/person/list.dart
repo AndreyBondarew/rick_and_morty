@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
-import 'package:rik_and_morti_rest/app/core/common/model/person_list_model.dart';
-import 'package:rik_and_morti_rest/app/viewmodel/person/contract/list_contract.dart';
+
+import '../../../core/common/model/person_list_model.dart';
+import '../../../viewmodel/person/contract/list_contract.dart';
 
 class PersonListWidget extends StatefulWidget {
   const PersonListWidget({Key? key}) : super(key: key);

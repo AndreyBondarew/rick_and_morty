@@ -1,6 +1,5 @@
-import 'package:rik_and_morti_rest/app/core/common/base/base_repository.dart';
-import 'package:rik_and_morti_rest/app/core/common/model/dto/person_list_dto.dart';
-
+import '../../../common/base/base_repository.dart';
+import '../../../common/model/dto/person_list_dto.dart';
 import '../../../common/model/person_detail_model.dart';
 
 abstract class PersonBaseRepository implements BaseRepository {

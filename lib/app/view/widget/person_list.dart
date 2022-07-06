@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:rik_and_morti_rest/app/view/widget/person_detail.dart';
+import 'package:rick_and_morty_test_restapi/app/view/widget/person_detail.dart';
 
 import '../../core/common/model/person_list_model.dart';
 import '../../viewmodel/person_list_vm.dart';

@@ -1,7 +1,7 @@
-import 'package:rik_and_morti_rest/app/core/common/model/location_list.dart';
-import 'package:rik_and_morti_rest/app/core/entities/location/query/fetch_list.dart';
-import 'package:rik_and_morti_rest/app/core/entities/location/query/handler/contract/list_contract.dart';
-import 'package:rik_and_morti_rest/app/core/entities/location/repository/base_repository.dart';
+import '../../../../common/model/location_list.dart';
+import '../../repository/base_repository.dart';
+import '../fetch_list.dart';
+import 'contract/list_contract.dart';
 
 class LocationListQueryHandler implements LocationListQueryHandlerContract {
   final LocationBaseRepository repository;

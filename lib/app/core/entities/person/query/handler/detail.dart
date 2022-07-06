@@ -1,7 +1,6 @@
-import 'package:rik_and_morti_rest/app/core/common/model/person_detail_model.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/get_person.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/repository/base_repository.dart';
-
+import '../../../../common/model/person_detail_model.dart';
+import '../../repository/base_repository.dart';
+import '../get_person.dart';
 import 'contract/detail_contract.dart';
 
 class PersonDetailQueryHandler implements PersonDetailQueryHandlerContract {

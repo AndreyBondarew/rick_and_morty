@@ -1,14 +1,14 @@
 import 'package:flutter_simple_dependency_injection/injector.dart';
-import 'package:rik_and_morti_rest/app/core/common/eventbus/contract/eventbus_contract.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/dispatcher/dispatcher.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/handler/contract/detail_contract.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/handler/contract/list_contract.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/handler/detail.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/handler/list.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/repository/base_repository.dart';
-import 'package:rik_and_morti_rest/app/infrastructure/repository/web_restapi/person_repository.dart';
-import 'package:rik_and_morti_rest/app/viewmodel/person/contract/list_contract.dart';
 
+import '../core/common/eventbus/contract/eventbus_contract.dart';
+import '../core/entities/person/query/dispatcher/dispatcher.dart';
+import '../core/entities/person/query/handler/contract/detail_contract.dart';
+import '../core/entities/person/query/handler/contract/list_contract.dart';
+import '../core/entities/person/query/handler/detail.dart';
+import '../core/entities/person/query/handler/list.dart';
+import '../core/entities/person/repository/base_repository.dart';
+import '../infrastructure/repository/web_restapi/person_repository.dart';
+import '../viewmodel/person/contract/list_contract.dart';
 import '../viewmodel/person/list.dart';
 
 class DiPerson {

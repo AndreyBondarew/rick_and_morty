@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:rik_and_morti_rest/app/core/common/model/dto/person_list_dto.dart';
-import 'package:rik_and_morti_rest/app/core/common/model/person_detail_model.dart';
-import 'package:rik_and_morti_rest/app/core/common/model/person_list_model.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/repository/base_repository.dart';
 
+import '../../../core/common/model/dto/person_list_dto.dart';
+import '../../../core/common/model/person_detail_model.dart';
+import '../../../core/common/model/person_list_model.dart';
+import '../../../core/entities/person/repository/base_repository.dart';
 import 'constant.dart';
 
 class PersonRestRepository implements PersonBaseRepository {

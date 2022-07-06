@@ -1,10 +1,10 @@
-import 'package:rik_and_morti_rest/app/core/common/base/query/base_exception.dart';
-import 'package:rik_and_morti_rest/app/core/common/base/query/base_query.dart';
-import 'package:rik_and_morti_rest/app/core/common/base/query/base_query_dispatcher.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/fetch_list.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/get_person.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/handler/contract/detail_contract.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/handler/contract/list_contract.dart';
+import '../../../../common/base/query/base_exception.dart';
+import '../../../../common/base/query/base_query.dart';
+import '../../../../common/base/query/base_query_dispatcher.dart';
+import '../fetch_list.dart';
+import '../get_person.dart';
+import '../handler/contract/detail_contract.dart';
+import '../handler/contract/list_contract.dart';
 
 class PersonQueryDispatcher extends BaseQueryDispatcher {
   final PersonDetailQueryHandlerContract detailHandler;

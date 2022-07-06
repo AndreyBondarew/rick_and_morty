@@ -1,7 +1,7 @@
-import 'package:rik_and_morti_rest/app/core/common/model/dto/person_list_dto.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/fetch_list.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/handler/contract/list_contract.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/repository/base_repository.dart';
+import '../../../../common/model/dto/person_list_dto.dart';
+import '../../repository/base_repository.dart';
+import '../fetch_list.dart';
+import 'contract/list_contract.dart';
 
 class PersonListQueryHandler implements PersonListQueryHandlerContract {
   final PersonBaseRepository repository;

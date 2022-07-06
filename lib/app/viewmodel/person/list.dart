@@ -1,11 +1,12 @@
 import 'dart:async';
 
-import 'package:rik_and_morti_rest/app/core/common/eventbus/contract/eventbus_contract.dart';
-import 'package:rik_and_morti_rest/app/core/common/model/dto/person_list_dto.dart';
-import 'package:rik_and_morti_rest/app/core/common/model/person_list_model.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/dispatcher/dispatcher.dart';
-import 'package:rik_and_morti_rest/app/core/entities/person/query/fetch_list.dart';
-import 'package:rik_and_morti_rest/app/viewmodel/person/contract/list_contract.dart';
+import 'package:rick_and_morty_test_restapi/app/core/common/model/person_list_model.dart';
+
+import '../../core/common/eventbus/contract/eventbus_contract.dart';
+import '../../core/common/model/dto/person_list_dto.dart';
+import '../../core/entities/person/query/dispatcher/dispatcher.dart';
+import '../../core/entities/person/query/fetch_list.dart';
+import 'contract/list_contract.dart';
 
 class PersonListViewModel implements PersonListViewModelContract, EventBusListener {
   final PersonQueryDispatcher dispatcher;

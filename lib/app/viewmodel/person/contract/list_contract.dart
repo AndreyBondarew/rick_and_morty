@@ -1,4 +1,4 @@
-import 'package:rik_and_morti_rest/app/core/common/model/person_list_model.dart';
+import '../../../core/common/model/person_list_model.dart';
 
 abstract class PersonListViewModelContract {
   Future<void> load();

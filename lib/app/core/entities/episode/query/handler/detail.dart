@@ -1,7 +1,7 @@
-import 'package:rik_and_morti_rest/app/core/common/model/episode_detail.dart';
-import 'package:rik_and_morti_rest/app/core/entities/episode/query/get_episode.dart';
-import 'package:rik_and_morti_rest/app/core/entities/episode/query/handler/contract/detail_contract.dart';
-import 'package:rik_and_morti_rest/app/core/entities/episode/repository/base_repository.dart';
+import '../../../../common/model/episode_detail.dart';
+import '../../repository/base_repository.dart';
+import '../get_episode.dart';
+import 'contract/detail_contract.dart';
 
 class EpisodeDetailQueryHandler implements EpisodeDetailQueryHandlerContract {
   EpisodeBaseRepository repository;

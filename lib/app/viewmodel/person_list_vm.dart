@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:rik_and_morti_rest/app/infrastructure/repository/person_list_repository.dart';
+import 'package:rick_and_morty_test_restapi/app/infrastructure/repository/person_list_repository.dart';
 
 import '../core/common/model/person_list_model.dart';
 
