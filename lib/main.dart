@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:rik_and_morti_rest/view/screen/list_screen.dart';
+
+import 'app/di/di.dart';
+import 'app/view/screen/person/list.dart';
 
 void main() {
+  Di().init();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    //print('start');
     return MaterialApp(
       title: 'Rick and Morty',
       theme: ThemeData(
@@ -58,10 +64,10 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: PersonListView()
       ),
-      *//*floatingActionButton: FloatingActionButton(
+      */ /*floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),*//*
+        child: Icon(Icons.add),*/ /*
       //), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
