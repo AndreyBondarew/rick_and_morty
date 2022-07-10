@@ -4,12 +4,12 @@ import '../get_location.dart';
 import 'contract/detail_contract.dart';
 
 class LocationDetailQueryHandler implements LocationDetailQueryHandlerContract {
-  final LocationBaseRepository repository;
+  final LocationDetailBaseRepository repository;
 
   LocationDetailQueryHandler(this.repository);
 
   @override
   Future<LocationDetailModel> execute(GetLocationQuery query) {
-    return repository.getLocation(query.locationId);
+    return repository.getLocationFromId(query.locationId);
   }
 }

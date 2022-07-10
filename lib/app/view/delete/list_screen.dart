@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,12 +24,15 @@ class PersonListScreen extends StatelessWidget {
           ),
         ),
         body: Center(child: PersonListView()),
-        /*floatingActionButton: FloatingActionButton(
+        */
+/*floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),*/
+        child: Icon(Icons.add),*/ /*
+
         //), // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
   }
 }
+*/

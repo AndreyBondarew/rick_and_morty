@@ -4,7 +4,7 @@ import '../get_person.dart';
 import 'contract/detail_contract.dart';
 
 class PersonDetailQueryHandler implements PersonDetailQueryHandlerContract {
-  final PersonBaseRepository repository;
+  final PersonDetailBaseRepository repository;
 
   PersonDetailQueryHandler(this.repository);
 

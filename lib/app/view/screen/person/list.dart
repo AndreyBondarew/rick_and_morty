@@ -11,7 +11,7 @@ class PersonListScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Rick and Morty: person list'),
       ),
-      body: PersonListWidget(),
+      body: const PersonListWidget(),
     );
   }
 }

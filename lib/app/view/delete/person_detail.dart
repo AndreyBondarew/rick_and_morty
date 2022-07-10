@@ -1,11 +1,13 @@
+/*
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '../../core/common/model/person_detail_model.dart';
+import '../../viewmodel/person/detail.dart';
 import '../../viewmodel/person_detail_vm.dart';
 
-class PersonaDetailPage extends StatefulWidget {
+class PersonaDetailPage_ extends StatefulWidget {
   final int id;
 
   PersonaDetailPage(this.id);
@@ -23,7 +25,7 @@ class _State extends State<PersonaDetailPage> {
 
   @override
   void initState() {
-    personDetailViewModel.event.listen((event) {
+    personDetailViewModel.notification.listen((event) {
       dispatch(event);
     });
     this.personDetailViewModel.load(id);
@@ -124,3 +126,4 @@ class _State extends State<PersonaDetailPage> {
     }
   }
 }
+*/

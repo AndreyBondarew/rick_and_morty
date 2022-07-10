@@ -8,7 +8,7 @@ abstract class PersonDetailViewModelContract {
 
 class PersonDetailNotifier {}
 
-class PersonDetailSuccessGetData implements PersonDetailNotifier {
+class PersonDetailSuccessLoadNotifier implements PersonDetailNotifier {
   final PersonDetailModel person;
-  PersonDetailSuccessGetData(this.person);
+  PersonDetailSuccessLoadNotifier(this.person);
 }

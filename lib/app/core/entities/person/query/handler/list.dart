@@ -4,7 +4,7 @@ import '../fetch_list.dart';
 import 'contract/list_contract.dart';
 
 class PersonListQueryHandler implements PersonListQueryHandlerContract {
-  final PersonBaseRepository repository;
+  final PersonListBaseRepository repository;
 
   PersonListQueryHandler(this.repository);
 

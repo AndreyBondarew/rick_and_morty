@@ -9,10 +9,12 @@ import '../handler/contract/list_contract.dart';
 class LocationQueryDispatcher implements BaseQueryDispatcher {
   LocationListQueryHandlerContract listHandler;
   LocationDetailQueryHandlerContract detailHandler;
+  //LocationSingleListItemQueryHandler singleListItemHandler;
 
   LocationQueryDispatcher({
     required this.listHandler,
     required this.detailHandler,
+    //required this.singleListItemHandler,
   });
 
   @override
@@ -23,6 +25,9 @@ class LocationQueryDispatcher implements BaseQueryDispatcher {
     if (query is GetLocationQuery) {
       return detailHandler.execute(query);
     }
+    /*if (query is GetSingleItemLocationListQuery) {
+      return singleListItemHandler.execute(query);
+    }*/
     throw InvalidQueryException('query not found in dispatcher');
   }
 }

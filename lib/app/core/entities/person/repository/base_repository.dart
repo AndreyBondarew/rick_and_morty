@@ -2,16 +2,10 @@ import '../../../common/base/base_repository.dart';
 import '../../../common/model/dto/person_list_dto.dart';
 import '../../../common/model/person_detail_model.dart';
 
-abstract class PersonBaseRepository implements BaseRepository {
+abstract class PersonListBaseRepository implements BaseRepository {
   Future<PersonListDto> fetchPersons(int page);
+}
 
+abstract class PersonDetailBaseRepository implements BaseRepository {
   Future<PersonDetailModel> getPerson(int id);
-
-  /* if Full RestAPI
-  Future<void> save(PersonDetailModel person);
-
-  Future<void> delete(int personId);
-
-  Future<void> update(PersonDetailModel person);
-  */
 }

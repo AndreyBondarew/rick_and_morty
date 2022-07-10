@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
+import 'package:rick_and_morty_test_restapi/app/view/screen/person/detail.dart';
 
 import '../../../core/common/model/person_list_model.dart';
 import '../../../viewmodel/person/contract/list_contract.dart';
@@ -12,8 +13,8 @@ class PersonListWidget extends StatefulWidget {
 }
 
 class _State extends State<PersonListWidget> {
-  List<PersonListModel> persons = [];
-  PersonListViewModelContract viewModel = Injector().get<PersonListViewModelContract>();
+  final List<PersonListModel> persons = [];
+  final PersonListViewModelContract viewModel = Injector().get<PersonListViewModelContract>();
   final ScrollController _scrollController = ScrollController();
   bool isLoading = true;
   bool availableData = true;
@@ -37,23 +38,18 @@ class _State extends State<PersonListWidget> {
           controller: _scrollController,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            childAspectRatio: 5,
+            childAspectRatio: 2.5,
             crossAxisSpacing: 8,
             mainAxisSpacing: 8,
             //mainAxisExtent: 96,
           ),
         ),
-        isLoading
-            ? const LinearProgressIndicator(
-                //minHeight: 8,
-                //color: Colors.indigo,
-                )
-            : Container(),
+        isLoading ? const LinearProgressIndicator(color: Colors.redAccent) : Container(),
       ],
     );
   }
 
-  Widget _itemBuild(BuildContext ctx, int index) {
+  Widget _itemBuild_(BuildContext ctx, int index) {
     return Card(
       /*child: ListTile(
         title: Text(persons[index].name),
@@ -72,8 +68,57 @@ class _State extends State<PersonListWidget> {
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Text('species: ${persons[index].species} status: ${persons[index].status}'),
-        //onTap: () => {Navigator.push(context, MaterialPageRoute(builder: (index) => PersonaDetailPage(person.id)))},
+        onTap: () => {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (ctx) => PersonDetailScreen(
+                id: persons[index].id,
+              ),
+            ),
+          )
+        },
       ),
+    );
+  }
+
+  Widget _itemBuild(BuildContext ctx, int index) {
+    return GestureDetector(
+      child: Card(
+        elevation: 3,
+        child: Column(
+          children: [
+            Spacer(),
+            SizedBox(
+              height: 110,
+              width: 110,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(90),
+                child: Image.network(persons[index].url),
+              ),
+            ),
+            Column(
+              children: [
+                Text(
+                  persons[index].name,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text('species: ${persons[index].species} status: ${persons[index].status}'),
+              ],
+            ),
+          ],
+        ),
+      ),
+      onTap: () => {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (ctx) => PersonDetailScreen(
+              id: persons[index].id,
+            ),
+          ),
+        )
+      },
     );
   }
 

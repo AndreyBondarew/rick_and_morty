@@ -1,9 +1,10 @@
+/*
 import 'dart:async';
 
 import '../core/common/model/person_detail_model.dart';
 import '../infrastructure/repository/person_detail_repository.dart';
 
-class PersonDetailViewModel {
+class PersonDetailViewModel_ {
   final PersonDetailRepository repository = PersonDetailRepository();
   final StreamController<PersonaDetailNotification> _controller = StreamController();
   bool isLoading = false;
@@ -33,3 +34,4 @@ class ErrorPersonDetailNotification implements PersonaDetailNotification {
 
   ErrorPersonDetailNotification({this.error});
 }
+*/

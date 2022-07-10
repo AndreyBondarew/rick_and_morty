@@ -1,3 +1,4 @@
+/*
 import 'dart:async';
 
 import 'package:rick_and_morty_test_restapi/app/infrastructure/repository/person_list_repository.dart';
@@ -31,3 +32,4 @@ class ErrorPersonListNotification implements PersonListNotification {
 
   ErrorPersonListNotification({required this.error});
 }
+*/

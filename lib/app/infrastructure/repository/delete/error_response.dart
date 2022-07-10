@@ -1,3 +1,4 @@
+/*
 
 class ErrorResponseException implements Exception{
   final String? errorMessage;
@@ -12,4 +13,4 @@ class ErrorResponseException implements Exception{
       return ("Server error: $errorMessage");
     }
   }
-}
+}*/
