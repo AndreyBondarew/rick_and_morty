@@ -1,3 +1,5 @@
+import 'package:rick_and_morty_test_restapi/app/core/common/model/location_list.dart';
+
 class PersonDetailModel {
   final int id;
   final String name;
@@ -5,15 +7,11 @@ class PersonDetailModel {
   final String species;
   final String type;
   final String gender;
-
-  //LocationListModel? originLocation;
-  final String? originLocationName;
-  final String? originLocationUrl;
-  //LocationListModel? endpointLocation;
-  final String? endpointLocationName;
-  final String? endpointLocationUrl;
-  final String? episodeUrl;
   final String avatarUrl;
+  final List<String> episodesId;
+
+  LocationListModel? originLocation;
+  LocationListModel? endpointLocation;
 
   PersonDetailModel({
     required this.id,
@@ -22,17 +20,18 @@ class PersonDetailModel {
     required this.species,
     required this.type,
     required this.gender,
-    /*this.originLocation,
-    this.endpointLocation,*/
-    this.originLocationName,
-    this.originLocationUrl,
-    this.endpointLocationName,
-    this.endpointLocationUrl,
-    this.episodeUrl,
+    this.originLocation,
+    this.endpointLocation,
+    this.episodesId = const [],
     required this.avatarUrl,
   });
 
-  factory PersonDetailModel.fromJson(var jsonItem) {
+  factory PersonDetailModel.fromJson(
+    var jsonItem, {
+    LocationListModel? originLocation,
+    LocationListModel? endpointLocation,
+    List<String>? episodesId,
+  }) {
     return PersonDetailModel(
       id: jsonItem['id'],
       name: jsonItem['name'],
@@ -40,22 +39,24 @@ class PersonDetailModel {
       species: jsonItem['species'],
       type: jsonItem['type'],
       gender: jsonItem['gender'],
-      originLocationName: jsonItem['origin']['name'],
-      originLocationUrl: jsonItem['origin']['url'],
-      endpointLocationName: jsonItem['location']['name'],
-      endpointLocationUrl: jsonItem['location']['url'],
-      /*locationName: jsonItem['locationName'],
-      locationUrl: jsonItem['locationUrl'],*/
+      originLocation: originLocation,
+      endpointLocation: endpointLocation,
+      episodesId: episodesId ?? [],
       avatarUrl: jsonItem['image'],
     );
   }
 
-  /*void setOriginLocation(LocationListModel? location) => originLocation = location;
+  void setOriginLocation(LocationListModel? location) => originLocation = location;
 
   void setEndpointLocation(LocationListModel? location) => endpointLocation = location;
 
   void setLocations(LocationListModel? originLocation, LocationListModel? endpointLocation) {
     setOriginLocation(originLocation);
     setEndpointLocation(endpointLocation);
-  }*/
+  }
+
+  void setEpisodes(List<String> episodeList) {
+    episodesId.clear();
+    episodesId.addAll(episodeList);
+  }
 }

@@ -5,11 +5,11 @@ import '../../../common/model/location_detail.dart';
 //import '../../../common/model/location_list.dart';
 
 abstract class LocationListBaseRepository implements BaseRepository {
-  Future<List<LocationListDto>> fetchLocationList(int page);
+  Future<LocationListDto> fetchLocationList(int page);
   //Future<LocationListModel> getLocationItem(String url);
 }
 
 abstract class LocationDetailBaseRepository implements BaseRepository {
   Future<LocationDetailModel> getLocationFromId(int id);
-  Future<LocationDetailModel> getLocationFromUrl(String url);
+  //Future<LocationDetailModel> getLocationFromUrl(String url);
 }

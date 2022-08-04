@@ -1,9 +1,12 @@
+import 'package:rick_and_morty_test_restapi/app/core/common/model/dto/episode_list_dto.dart';
+
 import '../../../common/base/base_repository.dart';
 import '../../../common/model/episode_detail.dart';
-import '../../../common/model/episode_list.dart';
 
-abstract class EpisodeBaseRepository implements BaseRepository {
-  Future<List<EpisodeListModel>> fetchList([int? page]);
-
+abstract class EpisodeDetailBaseRepository implements BaseRepository {
   Future<EpisodeDetailModel> getEpisode(int id);
+}
+
+abstract class EpisodeListBaseRepository implements BaseRepository {
+  Future<EpisodeListDto> fetchList(int page);
 }

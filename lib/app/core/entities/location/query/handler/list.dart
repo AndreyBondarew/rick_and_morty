@@ -10,7 +10,7 @@ class LocationListQueryHandler implements LocationListQueryHandlerContract {
   LocationListQueryHandler(this.repository);
 
   @override
-  Future<List<LocationListDto>> execute(LocationFetchListQuery query) async {
+  Future<LocationListDto> execute(LocationFetchListQuery query) async {
     return repository.fetchLocationList(query.page);
   }
 }

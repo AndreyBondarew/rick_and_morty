@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:rick_and_morty_test_restapi/app/core/common/base/base_filter.dart';
 import 'package:rick_and_morty_test_restapi/app/core/common/model/person_list_model.dart';
+import 'package:rick_and_morty_test_restapi/app/core/entities/person/query/fetch_multiple_list.dart';
 
 import '../../core/common/eventbus/contract/eventbus_contract.dart';
 import '../../core/common/model/dto/person_list_dto.dart';
@@ -27,18 +29,27 @@ class PersonListViewModel implements PersonListViewModelContract, EventBusListen
   }
 
   @override
-  Future<void> load() async {
-    _notificationController.add(PersonalListStartLoadingNotifier());
+  Future<void> load({BaseFilter? filter}) async {
+    _notificationController.add(PersonListStartLoadingNotifier());
     if (_totalPages != null && _nextPage > _totalPages!) {
       _notificationController.add(PersonListNothingLoadingNotifier());
       return;
     }
-    PersonListDto res = await dispatcher.dispatch(PersonsFetchListQuery(_nextPage));
-    _totalPages = res.totalPages;
-    if (res.persons.isNotEmpty) {
-      personList.addAll(res.persons);
-      _nextPage++;
-      _notificationController.add(PersonListSuccessLoadNotifier(personList));
+    try {
+      //print('load page $_nextPage');
+      PersonListDto res = filter == null
+          ? await dispatcher.dispatch(PersonsFetchListQuery(_nextPage))
+          : await dispatcher.dispatch(PersonsFilteredFetchListQuery(filter));
+      _totalPages = res.totalPages;
+      if (res.persons.isNotEmpty) {
+        personList.addAll(res.persons);
+        _nextPage++;
+        _notificationController.add(PersonListSuccessLoadNotifier(personList));
+        return;
+      }
+      _notificationController.add(PersonListErrorLoadingNotifier('API returned empty data'));
+    } catch (e) {
+      _notificationController.add(PersonListErrorLoadingNotifier(e.toString()));
     }
   }
 

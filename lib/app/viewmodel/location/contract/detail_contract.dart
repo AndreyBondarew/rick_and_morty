@@ -2,14 +2,20 @@ import 'package:rick_and_morty_test_restapi/app/core/common/model/location_detai
 
 abstract class LocationDetailViewModelContract {
   Future<void> load(int id);
-  Stream<LocationDetailNotification> get notifier;
+  Stream<LocationDetailNotifier> get notifier;
   void dispose();
 }
 
-class LocationDetailNotification {}
+class LocationDetailNotifier {}
 
-class LocationDetailSuccessLoadNotification implements LocationDetailNotification {
+class LocationDetailSuccessLoadNotifier implements LocationDetailNotifier {
   final LocationDetailModel data;
 
-  LocationDetailSuccessLoadNotification(this.data);
+  LocationDetailSuccessLoadNotifier(this.data);
+}
+
+class LocationDetailLoadingErrorNotifier implements LocationDetailNotifier {
+  final String? message;
+
+  LocationDetailLoadingErrorNotifier([this.message]);
 }

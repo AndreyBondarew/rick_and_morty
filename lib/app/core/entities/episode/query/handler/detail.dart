@@ -4,7 +4,7 @@ import '../get_episode.dart';
 import 'contract/detail_contract.dart';
 
 class EpisodeDetailQueryHandler implements EpisodeDetailQueryHandlerContract {
-  EpisodeBaseRepository repository;
+  EpisodeDetailBaseRepository repository;
 
   EpisodeDetailQueryHandler(this.repository);
 

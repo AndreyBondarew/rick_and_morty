@@ -10,6 +10,6 @@ class PersonListQueryHandler implements PersonListQueryHandlerContract {
 
   @override
   Future<PersonListDto> execute(PersonsFetchListQuery query) {
-    return repository.fetchPersons(query.page);
+    return repository.fetchList(query.page);
   }
 }

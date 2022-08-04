@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
-import 'package:rick_and_morty_test_restapi/app/view/screen/person/detail.dart';
+import 'package:rick_and_morty_test_restapi/app/core/entities/person/filter/multiple_list.dart';
 
 import '../../../core/common/model/person_list_model.dart';
 import '../../../viewmodel/person/contract/list_contract.dart';
+import '../../screen/person/detail.dart';
 
 class PersonListWidget extends StatefulWidget {
-  const PersonListWidget({Key? key}) : super(key: key);
+  final MultiplePersonListFilter? filter;
+
+  const PersonListWidget({Key? key, this.filter}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _State();
@@ -15,16 +18,22 @@ class PersonListWidget extends StatefulWidget {
 class _State extends State<PersonListWidget> {
   final List<PersonListModel> persons = [];
   final PersonListViewModelContract viewModel = Injector().get<PersonListViewModelContract>();
-  final ScrollController _scrollController = ScrollController();
-  bool isLoading = true;
+
+  bool isLoading = false;
   bool availableData = true;
 
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(() => _loadMore());
     viewModel.notification.listen((event) => _dispatch(event));
-    viewModel.load();
+    viewModel.load(filter: widget.filter);
+  }
+
+  //==========================
+  @override
+  void dispose() {
+    viewModel.dispose();
+    super.dispose();
   }
 
   @override
@@ -35,99 +44,118 @@ class _State extends State<PersonListWidget> {
           itemBuilder: (BuildContext ctx, int index) => _itemBuild(ctx, index),
           shrinkWrap: true,
           itemCount: persons.length,
-          controller: _scrollController,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            childAspectRatio: 2.5,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            //mainAxisExtent: 96,
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            crossAxisSpacing: 1,
+            mainAxisSpacing: 1,
+            maxCrossAxisExtent: 230,
           ),
         ),
-        isLoading ? const LinearProgressIndicator(color: Colors.redAccent) : Container(),
+        isLoading
+            ? const Align(
+                alignment: Alignment.topCenter,
+                child: LinearProgressIndicator(color: Colors.redAccent),
+              )
+            : Container(),
       ],
     );
   }
 
-  Widget _itemBuild_(BuildContext ctx, int index) {
-    return Card(
-      /*child: ListTile(
-        title: Text(persons[index].name),
-      ),*/
-      elevation: 3,
-      child: ListTile(
-        //contentPadding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 8.0),
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(700),
-          child: Image.network(
-            persons[index].url,
-          ),
-        ),
-        title: Text(
-          persons[index].name,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        subtitle: Text('species: ${persons[index].species} status: ${persons[index].status}'),
-        onTap: () => {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (ctx) => PersonDetailScreen(
-                id: persons[index].id,
-              ),
-            ),
-          )
-        },
-      ),
-    );
-  }
-
-  Widget _itemBuild(BuildContext ctx, int index) {
-    return GestureDetector(
-      child: Card(
-        elevation: 3,
-        child: Column(
-          children: [
-            Spacer(),
-            SizedBox(
-              height: 110,
-              width: 110,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(90),
-                child: Image.network(persons[index].url),
-              ),
-            ),
-            Column(
-              children: [
-                Text(
-                  persons[index].name,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+  Widget _itemBuild(BuildContext context, int index) {
+    if (index == persons.length - 1 && availableData && !isLoading) {
+      viewModel.load();
+    }
+    return RawMaterialButton(
+      onPressed: () => widget.filter == null
+          ? Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PersonDetailScreen(
+                  id: persons[index].id,
+                  name: persons[index].name,
                 ),
-                Text('species: ${persons[index].species} status: ${persons[index].status}'),
-              ],
+              ),
+            )
+          : Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PersonDetailScreen(
+                  id: persons[index].id,
+                  name: persons[index].name,
+                ),
+              ),
+            ),
+      child: Card(
+        elevation: 4,
+        child: Stack(
+          children: [
+            Image(
+              image: _getAvatar(index), // NetworkImage(persons[index].avatarUri),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: _buildFooter(index),
             ),
           ],
         ),
       ),
-      onTap: () => {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (ctx) => PersonDetailScreen(
-              id: persons[index].id,
-            ),
-          ),
-        )
-      },
     );
   }
 
-  //==========================
-  @override
-  void dispose() {
-    viewModel.dispose();
-    _scrollController.removeListener(() => _loadMore());
-    super.dispose();
+  ImageProvider _getAvatar(int index) {
+    //Future.delayed(Duration(milliseconds: index));
+    return NetworkImage(persons[index].avatarUri);
+  }
+
+  Widget _buildFooter(int index) {
+    return Container(
+      color: const Color.fromARGB(205, 0, 0, 0),
+      height: 40,
+      alignment: Alignment.bottomCenter,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            persons[index].name,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          RichText(
+            text: TextSpan(
+              text: '${persons[index].species} ',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 11,
+                fontWeight: FontWeight.normal,
+              ),
+              children: [
+                TextSpan(
+                  text: '[${persons[index].status}]',
+                  style: TextStyle(
+                    color: _getStatusColor(persons[index].status),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Color _getStatusColor(String status) {
+    if (status == 'Alive') {
+      return Colors.green;
+    }
+    if (status == 'Dead') {
+      return Colors.red;
+    }
+    return Colors.orange;
   }
 
   //==========================
@@ -139,7 +167,7 @@ class _State extends State<PersonListWidget> {
         persons.addAll(notifier.persons);
       });
     }
-    if (notifier is PersonalListStartLoadingNotifier) {
+    if (notifier is PersonListStartLoadingNotifier) {
       setState(() {
         isLoading = true;
       });
@@ -150,11 +178,10 @@ class _State extends State<PersonListWidget> {
         isLoading = false;
       });
     }
-  }
-
-  void _loadMore() {
-    if (availableData && _scrollController.position.maxScrollExtent == _scrollController.position.pixels && !isLoading) {
-      viewModel.load();
+    if (notifier is PersonListErrorLoadingNotifier) {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 }

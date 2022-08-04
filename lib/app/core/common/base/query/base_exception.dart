@@ -1,4 +1,11 @@
-class BaseQueryException implements Exception {}
+import '../exception.dart';
+
+class BaseQueryException implements BaseAppException {
+  @override
+  final String? message;
+
+  BaseQueryException([this.message]);
+}
 
 class InvalidQueryException implements BaseQueryException {
   final String? message;

@@ -1,7 +1,7 @@
 import '../../../common/base/query/base_query.dart';
 
 class EpisodeFetchListQuery extends BaseQuery {
-  final int? page;
+  final int page;
 
-  EpisodeFetchListQuery([this.page]);
+  EpisodeFetchListQuery(this.page);
 }

@@ -3,15 +3,23 @@ class LocationDetailModel {
   final String name;
   final String type;
   final String dimension;
-  final List<String> residents;
-  final String url;
+  final List<String> residentsIds;
 
   LocationDetailModel({
     required this.id,
     required this.name,
     required this.type,
     required this.dimension,
-    required this.residents,
-    required this.url,
+    required this.residentsIds,
   });
+
+  factory LocationDetailModel.fromJson(var data, {List<String> residentsIds = const []}) {
+    return LocationDetailModel(
+      id: data['id'],
+      name: data['name'],
+      type: data['type'],
+      dimension: data['dimension'],
+      residentsIds: residentsIds,
+    );
+  }
 }

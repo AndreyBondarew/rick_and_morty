@@ -12,3 +12,9 @@ class PersonDetailSuccessLoadNotifier implements PersonDetailNotifier {
   final PersonDetailModel person;
   PersonDetailSuccessLoadNotifier(this.person);
 }
+
+class PersonDetailErrorLoadingNotification implements PersonDetailNotifier {
+  final String? message;
+
+  PersonDetailErrorLoadingNotification(this.message);
+}

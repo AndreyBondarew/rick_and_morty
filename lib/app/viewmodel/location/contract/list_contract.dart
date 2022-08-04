@@ -8,10 +8,18 @@ abstract class LocationListViewModelContract {
 
 class LocationListNotifier {}
 
-class LocationSuccessLoadNotifier implements LocationListNotifier {
+class LocationListSuccessLoadNotifier implements LocationListNotifier {
   final List<LocationListModel> locations;
 
-  LocationSuccessLoadNotifier(this.locations);
+  LocationListSuccessLoadNotifier(this.locations);
 }
 
 class LocationListStartLoadingNotifier implements LocationListNotifier {}
+
+class LocationListNothingLoadingNotifier implements LocationListNotifier {}
+
+class LocationListErrorLoadingNotifier implements LocationListNotifier {
+  final String? message;
+
+  LocationListErrorLoadingNotifier([this.message]);
+}

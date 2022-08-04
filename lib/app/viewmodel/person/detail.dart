@@ -19,13 +19,17 @@ class PersonDetailViewModel implements PersonDetailViewModelContract, EventBusLi
 
   @override
   Future<void> load(int id) async {
-    _notifyController.add(
-      PersonDetailSuccessLoadNotifier(
-        await _queryDispatcher.dispatch(
-          GetPersonFromId(id),
+    try {
+      _notifyController.add(
+        PersonDetailSuccessLoadNotifier(
+          await _queryDispatcher.dispatch(
+            GetPersonFromId(id),
+          ),
         ),
-      ),
-    );
+      );
+    } catch (e) {
+      _notifyController.add(PersonDetailErrorLoadingNotification(e.toString()));
+    }
   }
 
   @override

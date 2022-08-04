@@ -3,14 +3,14 @@ class PersonListModel {
   final String name;
   final String status;
   final String species;
-  final String url;
+  final String avatarUri;
 
   PersonListModel({
     required this.id,
     required this.name,
     required this.status,
     required this.species,
-    required this.url,
+    required this.avatarUri,
   });
 
   factory PersonListModel.fromMap(Map<String, dynamic> data) {
@@ -19,7 +19,12 @@ class PersonListModel {
       name: data['name'],
       status: data['status'],
       species: data['species'],
-      url: data['image'],
+      avatarUri: data['image'],
     );
   }
+
+/*  @override
+  String toString() {
+    return ('Name: $name ');
+  }*/
 }
