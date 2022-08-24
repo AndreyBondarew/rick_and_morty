@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty_test_restapi/app/core/common/base/base_filter.dart';
 
 import '../../widget/drawer/common_drawer.dart';
 import '../../widget/episode/list.dart';
 
 class EpisodeListScreen extends StatelessWidget {
-  const EpisodeListScreen({Key? key}) : super(key: key);
+  final BaseFilter? filter;
+
+  const EpisodeListScreen({Key? key, this.filter}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,9 @@ class EpisodeListScreen extends StatelessWidget {
             )
           : null,
       body: MediaQuery.of(context).size.width < 600
-          ? const EpisodeListWidget()
+          ? EpisodeListWidget(
+              filter: filter,
+            )
           : Row(
               children: [
                 const SizedBox(
@@ -27,7 +32,9 @@ class EpisodeListScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width - 300,
-                  child: const EpisodeListWidget(),
+                  child: EpisodeListWidget(
+                    filter: filter,
+                  ),
                 ),
               ],
             ),

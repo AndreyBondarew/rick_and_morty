@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty_test_restapi/app/view/theme/app_theme_builder.dart';
 
 import 'app/di/di.dart';
 import 'app/view/screen/episode/list.dart';
@@ -21,9 +22,10 @@ class MyApp extends StatelessWidget {
     //print('start');
     return MaterialApp(
       title: 'Rick and Morty',
-      theme: ThemeData(
+      theme: AppThemeDataBuilder.buildThemeDataLight(),
+      /*ThemeData(
         primarySwatch: Colors.blue,
-      ),
+      ),*/
       /*home: AnimatedSplashScreen(
           nextScreen: StartPage(),
           splash: Image.asset('assets/images/start3.gif'),

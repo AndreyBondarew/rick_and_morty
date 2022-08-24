@@ -4,13 +4,13 @@ import 'package:rick_and_morty_test_restapi/app/view/screen/episode/detail.dart'
 import 'package:rick_and_morty_test_restapi/app/view/widget/episode/util.dart';
 import 'package:rick_and_morty_test_restapi/app/viewmodel/episode/contract/list_contract.dart';
 
+import '../../../core/common/base/base_filter.dart';
 import '../../../core/common/model/episode_list.dart';
 
 class EpisodeListWidget extends StatefulWidget {
-  //final BaseFilter? filter;
+  final BaseFilter? filter;
 
-  const EpisodeListWidget({super.key /*, this.filter*/
-      });
+  const EpisodeListWidget({super.key, this.filter});
 
   @override
   State<StatefulWidget> createState() => _State();
@@ -26,7 +26,7 @@ class _State extends State<EpisodeListWidget> {
   void initState() {
     super.initState();
     _viewModel.notifier.listen((event) => _eventDispatcher(event));
-    _viewModel.load();
+    _viewModel.load(filter: widget.filter);
   }
 
   @override
@@ -60,7 +60,7 @@ class _State extends State<EpisodeListWidget> {
   }
 
   Widget _buildItem(int index) {
-    if (!_isLoading && _availableData && index >= _episodeList.length - 1) {
+    if (!_isLoading && _availableData && index >= _episodeList.length - 1 && widget.filter == null) {
       _viewModel.load();
     }
     //print(Colors.blueGrey.value /*SeasonEpisodeDTO.fromString(_episodeList[index].episode)*/);
@@ -69,7 +69,7 @@ class _State extends State<EpisodeListWidget> {
       //color: Color(2284513675 * int.parse(seasonDto.season.substring(1))).withAlpha(50),
       elevation: 4,
       child: MaterialButton(
-        onPressed: () => Navigator.pushReplacement(
+        onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => EpisodeDetailScreen(

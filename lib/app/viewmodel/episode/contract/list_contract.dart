@@ -1,7 +1,9 @@
+import 'package:rick_and_morty_test_restapi/app/core/common/base/base_filter.dart';
+
 import '../../../core/common/model/episode_list.dart';
 
 abstract class EpisodeListViewModelContract {
-  Future<void> load();
+  Future<void> load({BaseFilter? filter});
   void dispose();
   Stream<EpisodeListNotifier> get notifier;
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:rick_and_morty_test_restapi/app/core/entities/person/filter/multiple_list.dart';
+import 'package:rick_and_morty_test_restapi/app/view/theme/custom_colors.dart';
 
 import '../../../core/common/model/person_list_model.dart';
 import '../../../viewmodel/person/contract/list_contract.dart';
@@ -18,6 +19,8 @@ class PersonListWidget extends StatefulWidget {
 class _State extends State<PersonListWidget> {
   final List<PersonListModel> persons = [];
   final PersonListViewModelContract viewModel = Injector().get<PersonListViewModelContract>();
+
+  //late final CustomThemeColors customThemeColors;
 
   bool isLoading = false;
   bool availableData = true;
@@ -38,6 +41,7 @@ class _State extends State<PersonListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final CustomThemeColors customThemeColors = Theme.of(context).extension<CustomThemeColors>()!;
     return Stack(
       children: [
         GridView.builder(
@@ -93,7 +97,7 @@ class _State extends State<PersonListWidget> {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: _buildFooter(index),
+              child: _buildFooter(context, index),
             ),
           ],
         ),
@@ -106,9 +110,10 @@ class _State extends State<PersonListWidget> {
     return NetworkImage(persons[index].avatarUri);
   }
 
-  Widget _buildFooter(int index) {
+  Widget _buildFooter(BuildContext context, int index) {
+    final ThemeData themeData = Theme.of(context); //.extension<CustomThemeColors>()!;
     return Container(
-      color: const Color.fromARGB(205, 0, 0, 0),
+      color: themeData.extension<CustomThemeColors>()!.footerGrid, //const Color.fromARGB(205, 0, 0, 0),
       height: 40,
       alignment: Alignment.bottomCenter,
       child: Column(
@@ -136,7 +141,9 @@ class _State extends State<PersonListWidget> {
                 TextSpan(
                   text: '[${persons[index].status}]',
                   style: TextStyle(
-                    color: _getStatusColor(persons[index].status),
+                    color: themeData
+                        .extension<CustomThemeColors>()!
+                        .getStatusColor(persons[index].status), //_getStatusColor(persons[index].status),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -146,16 +153,6 @@ class _State extends State<PersonListWidget> {
         ],
       ),
     );
-  }
-
-  Color _getStatusColor(String status) {
-    if (status == 'Alive') {
-      return Colors.green;
-    }
-    if (status == 'Dead') {
-      return Colors.red;
-    }
-    return Colors.orange;
   }
 
   //==========================

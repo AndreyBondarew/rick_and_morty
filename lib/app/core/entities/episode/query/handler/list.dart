@@ -5,7 +5,7 @@ import '../fetch_list.dart';
 import 'contract/list_contract.dart';
 
 class EpisodeListQueryHandler implements EpisodeListQueryHandlerContract {
-  EpisodeListBaseRepository repository;
+  final EpisodeListBaseRepository repository;
 
   EpisodeListQueryHandler(this.repository);
 

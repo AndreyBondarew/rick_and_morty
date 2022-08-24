@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:rick_and_morty_test_restapi/app/core/common/base/base_filter.dart';
 import 'package:rick_and_morty_test_restapi/app/core/common/eventbus/contract/eventbus_contract.dart';
 import 'package:rick_and_morty_test_restapi/app/core/common/model/dto/episode_list_dto.dart';
 import 'package:rick_and_morty_test_restapi/app/core/entities/episode/query/fetch_list.dart';
+import 'package:rick_and_morty_test_restapi/app/core/entities/episode/query/fetch_multiple_list.dart';
 
 import '../../core/common/model/episode_list.dart';
 import '../../core/entities/episode/query/dispatcher/dispatcher.dart';
@@ -27,14 +29,16 @@ class EpisodeListViewModel implements EpisodeListViewModelContract, EventBusList
   }
 
   @override
-  Future<void> load() async {
+  Future<void> load({BaseFilter? filter}) async {
     _notificationController.add(EpisodeListNowLoadingNotifier());
     if (_totalPages != null && _nextPage > _totalPages!) {
       _notificationController.add(EpisodeListNothingLoadingNotifier());
       return;
     }
     try {
-      EpisodeListDto episodeListDto = await _dispatcher.dispatch(EpisodeFetchListQuery(_nextPage));
+      EpisodeListDto episodeListDto = filter == null
+          ? await _dispatcher.dispatch(EpisodeFetchListQuery(_nextPage))
+          : await _dispatcher.dispatch(EpisodeFilteredFetchListQuery(filter));
       _totalPages = episodeListDto.totalPages;
       if (episodeListDto.episodes.isNotEmpty) {
         _nextPage++;
@@ -43,7 +47,7 @@ class EpisodeListViewModel implements EpisodeListViewModelContract, EventBusList
         return;
       }
     } catch (e) {
-      print(e.toString());
+      //print(e.toString());
       _notificationController.add(EpisodeListErrorLoadingNotifier(e.toString()));
     }
     //TODO обработка пустых данных

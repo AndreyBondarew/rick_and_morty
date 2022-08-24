@@ -60,14 +60,14 @@ class _State extends State<LocationDetailWidget> {
                   children: [
                     RichText(
                       text: TextSpan(
-                          text: 'Location name ',
+                          text: 'Location name: ',
                           style: const TextStyle(
-                            fontWeight: FontWeight.w300,
+                            fontWeight: FontWeight.w800,
                             color: Colors.black,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                           children: [
-                            WidgetSpan(
+                            /*WidgetSpan(
                               child: Padding(
                                 padding: const EdgeInsets.all(2.0),
                                 child: Container(
@@ -76,27 +76,31 @@ class _State extends State<LocationDetailWidget> {
                                   color: Colors.blueGrey,
                                 ),
                               ),
-                            ),
+                            ),*/
                             TextSpan(
                               text: ' ${locationDetailModel!.name}',
                               style: const TextStyle(
-                                color: Colors.purple,
-                                fontWeight: FontWeight.w900,
-                                letterSpacing: .5,
+                                color: Colors.red,
+                                //fontWeight: FontWeight.w900,
+                                //letterSpacing: .5,
                               ),
                             ),
                           ]),
                     ),
                     /*locationDetailModel!.name),*/
+                    Container(
+                      height: 5,
+                    ),
                     RichText(
                       text: TextSpan(
-                        text: 'Type ',
+                        text: 'Type: ',
                         style: const TextStyle(
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
                           color: Colors.black,
                         ),
                         children: [
-                          WidgetSpan(
+                          /*WidgetSpan(
                             child: Padding(
                               padding: const EdgeInsets.all(2.0),
                               child: Container(
@@ -105,19 +109,34 @@ class _State extends State<LocationDetailWidget> {
                                 color: Colors.blueGrey,
                               ),
                             ),
-                          ),
+                          ),*/
                           TextSpan(
                             text: ' ${locationDetailModel!.type}',
                             style: const TextStyle(
-                              fontWeight: FontWeight.w900,
+                              fontWeight: FontWeight.w700,
                               color: Colors.blueAccent,
                               letterSpacing: .5,
                             ),
                           ),
-                          const TextSpan(
-                            text: ',   Dimension ',
-                          ),
                           WidgetSpan(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8, right: 8),
+                              child: Container(
+                                width: 1,
+                                height: 15,
+                                color: Colors.blueGrey,
+                              ),
+                            ),
+                          ),
+                          const TextSpan(
+                            text: 'Dimension: ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color: Colors.black,
+                            ),
+                          ),
+                          /*WidgetSpan(
                             child: Padding(
                               padding: const EdgeInsets.all(2.0),
                               child: Container(
@@ -126,12 +145,12 @@ class _State extends State<LocationDetailWidget> {
                                 color: Colors.blueGrey,
                               ),
                             ),
-                          ),
+                          ),*/
                           TextSpan(
                             text: ' ${locationDetailModel!.dimension}',
                             style: const TextStyle(
                               color: Colors.blueAccent,
-                              fontWeight: FontWeight.w900,
+                              fontWeight: FontWeight.w800,
                               letterSpacing: .5,
                             ),
                           ),
