@@ -49,11 +49,12 @@ class CustomThemeColors extends ThemeExtension<CustomThemeColors> {
       return this;
     }
     return CustomThemeColors(
-        statusAlive: Color.lerp(statusAlive, other.statusAlive, t),
-        statusDead: Color.lerp(statusDead, other.statusDead, t),
-        statusUnknown: Color.lerp(statusUnknown, other.statusUnknown, t),
-        footerGrid: Color.lerp(footerGrid, other.footerGrid, t),
-        separateLine: Color.lerp(separateLine, other.separateLine, t));
+      statusAlive: Color.lerp(statusAlive, other.statusAlive, t),
+      statusDead: Color.lerp(statusDead, other.statusDead, t),
+      statusUnknown: Color.lerp(statusUnknown, other.statusUnknown, t),
+      footerGrid: Color.lerp(footerGrid, other.footerGrid, t),
+      separateLine: Color.lerp(separateLine, other.separateLine, t),
+    );
   }
 
   static const light = CustomThemeColors(
