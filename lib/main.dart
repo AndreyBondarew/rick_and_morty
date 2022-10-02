@@ -23,16 +23,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Rick and Morty',
       theme: AppThemeDataBuilder.buildThemeDataLight(),
-      /*ThemeData(
-        primarySwatch: Colors.blue,
-      ),*/
-      /*home: AnimatedSplashScreen(
-          nextScreen: StartPage(),
-          splash: Image.asset('assets/images/start3.gif'),
-          backgroundColor: Colors.transparent,
-          splashTransition: SplashTransition.slideTransition,
-          duration: 2500,
-        ),*/
       initialRoute: '/',
       routes: {
         '/': (ctx) => const StartPage(),
